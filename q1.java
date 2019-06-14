@@ -1,4 +1,4 @@
-
+//
 public class q1 {
 	
 	//Problem 1: Implement an algorithm that determines if a string has all unique characters. 
