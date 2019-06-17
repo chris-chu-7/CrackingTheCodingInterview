@@ -15,44 +15,47 @@ public class q3 {
 		
 		for(int i = 0; i < c.length; i++) {
 			if(i >= s.length()) {
-				numSpaces++;
-				c[i] = ' ';
+				c[i] = '\0';
 				continue;
 			}
 			else {
 				c[i] = s.charAt(i);
 			}
 				
-			if(c[i] == ' ') {
+			if(c[i] == ' ' && (c[i + 1] != ' ')) {
 				numSpaces++;
 			}
 		}
-		
 		int multiply = numSpaces * 2;
 		
 		char[] finalArray = new char[c.length + multiply];
 		
-		int finalIndex = 0;
-		while(finalIndex < finalArray.length) {
-			System.out.println(finalIndex);
-			int offset = 0;
-			while(offset < c.length) {
-				if(c[offset] == ' ') {
-					System.out.println(finalIndex);
-					finalArray[finalIndex] = '%';
-					finalArray[finalIndex + 1] = '2';
-					finalArray[finalIndex + 2] = '0';
-					finalIndex = finalIndex + 3;
-				} else {
-					System.out.println(finalIndex);
-					finalArray[finalIndex] = c[offset];
-					finalIndex++;
-				}
-				offset++;
-			}
-		}
-	
+		int finalIndex = finalArray.length-1;
+		//System.out.println(finalIndex);
 		
+		System.out.println(c[c.length - 1]);
+		int originalNum = c.length - 1;
+		while(finalIndex >= 0) {
+			//System.out.println(finalIndex);
+			
+			System.out.println(originalNum);
+			
+			if(c[originalNum] == ' ') {
+				finalArray[finalIndex] = '0';
+				finalArray[finalIndex - 1] = '2';
+				finalArray[finalIndex - 2] = '%';
+				originalNum--;
+				finalIndex -= 3;
+			}
+			
+			else {
+				finalArray[finalIndex] = c[originalNum];
+				finalIndex--;
+				originalNum--;
+			}
+				
+		}
+				
 		for(int b = 0; b < finalArray.length; b++) {
 			System.out.print(finalArray[b]);
 		}
@@ -62,7 +65,7 @@ public class q3 {
 
 	public static void main(String[] args) {
 		//Example; Mr. John Smith should generate "Mr%20John%20Smith"
-		printNewString("Mr. John Smith", 13);
+		printNewString("Mr. John Smith", 2012);
 
 	}
 
