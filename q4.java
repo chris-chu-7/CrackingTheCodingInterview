@@ -13,68 +13,40 @@
 import java.util.ArrayList;
 
 public class q4 {
-	static class LinkedList{
-		LinkedList next = null;
-		char data;
-		
-		public LinkedList(char d) {
-			data = d;
-		}
-		
-		void appendToTail(char d) {
-			LinkedList end = new LinkedList(d);
-			LinkedList n = this;
-			while(n.next != null) {
-				n = n.next;
-			}
-			n.next = end;
-		}
-		
-		boolean hasNext() {
-			return (this.next != null);
-		}
-		
-		
-		
-	}
 	
-	public static int hasValue(ArrayList<LinkedList> list, char c) {
-		for(int i = 0; i < list.size(); i++) {
-			if(list.get(i).data == c) {
-				return i;
-			}
-			
-		}
-		return 2000000000; 
+	public static int hashFunction(char c) {
+		return Character.getNumericValue(Character.toLowerCase(c)) - Character.getNumericValue('a') + 1;
 	}
 	
 	public static boolean isPalidromePermutation(String s) {
-		String lower = s.toLowerCase();
-		ArrayList<LinkedList> charList = new ArrayList<LinkedList>();
-		for(int i = 0; i < lower.length(); i++) {
-			char c = s.charAt(i);
+		
+		int numOne = 0;
+		int[] charArray = new int[(int)'z' + 1 - (int)'a'];
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) == ' ') {
+				continue; 
+			} 
 			
-			if(hasValue(charList, c) != 2000000000) {
-				charList.get(i).appendToTail(c);
-			} else {
-				charList.add(new LinkedList(c));
-			}
+			charArray[hashFunction(s.charAt(i))] ++;
 			
-			//check to see if arrayList already has the value
 		}
 		
-		for(int i = 0; i < charList.size(); i++) {
-			if(!charList.get(i).hasNext()) {
-				return false;
+		for(int i = 0; i < charArray.length; i++) {
+			if(charArray[i] % 2 == 1) {
+				numOne++; 
+				if(numOne > 1) {
+					return false;
+				}
 			}
 		}
 		
-		return true; 
+		
+		return true;
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(isPalidromePermutation("racecar"));
+		System.out.println(isPalidromePermutation("race    ca   r"));
 	}
 
 }
