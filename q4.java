@@ -46,7 +46,14 @@ public class q4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(isPalidromePermutation("race    ca   r"));
+		try {
+			System.out.println(isPalidromePermutation("q W  e   r    T     Y      t    R   e   w       AAqrr."));
+		} catch (Exception e) {
+			System.out.println("You have entered an invalid statment.");
+		} finally {
+			System.out.println("Done");
+		}
+		
 	}
 
 }
