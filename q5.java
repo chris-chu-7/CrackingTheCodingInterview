@@ -51,6 +51,9 @@ public class q5 {
 				String b = stringScan.next();
 				System.out.println("Edit distance between a and b is " + editDistance(a, b, a.length(), b.length()));
 				System.out.println(isOneEditAway(a, b));
+				System.out.println("Do you want to stop testing now?");
+				String response = stringScan.next();
+				end = (response.toLowerCase().equals("yes"));
 				
 			}
 		} catch(Exception e) {
