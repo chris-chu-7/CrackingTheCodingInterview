@@ -8,24 +8,49 @@
 public class q7 {
 	
 	public static void rotateMatrix(int[][] matrix) {
-		if(matrix.length == 0) {
+		if (matrix.length == 0 || matrix.length == 1) {
 			return;
 		}
-		for(int i = 0; i < matrix.length/2; i++) {
-			int top = i;
-			int bottom = matrix.length-1-i;
-			for(int j = top; j < bottom; j++) {
-				int temp = matrix[top][j];
-				matrix[top][j] = matrix[j][matrix.length-1-j];
-				matrix[j][matrix.length-1-j] = matrix[bottom][j];
-				matrix[bottom][j] = matrix[j][matrix.length-1-bottom];
-				matrix[j][matrix.length-1-bottom] = temp;
-			}
-		}
 		
+		for(int level = 0; level < matrix.length/2; level++) {
+			int first = level;
+			int last = matrix.length - 1 - level;
+			for(int index = first; index < last; index++) {
+				int temporary = matrix[first][index];
+				matrix[first][index] = matrix[last + first - index][first];
+				matrix[last+first-index][first] = matrix[last][last + first - index];
+				matrix[last][last + first - index] = matrix[index][last];
+				matrix[index][last] = temporary;
+			}
+			
+		}
 	}
 
 	public static void main(String[] args) {
+		
+		int[][] matrix = new int[4][4];
+		for(int i = 0; i < matrix.length; i++) {
+			for(int j = 0; j < matrix.length; j++) {
+				matrix[i][j] = i + j;
+			}
+		}
+		
+		for(int i = 0; i < matrix.length; i++) {
+			for(int j = 0; j < matrix.length; j++) {
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+		rotateMatrix(matrix);
+		System.out.println();
+		
+		for(int i = 0; i < matrix.length; i++) {
+			for(int j = 0; j < matrix.length; j++) {
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
 
 	}
 
