@@ -107,7 +107,25 @@ public class q17 {
 		
 		b.next = a.next.next.next;
 		
-		System.out.println(cycle(a).data);
+		if(cycle(a) != null) {
+			System.out.println("A's data: " + cycle(a).data);
+		} else {
+			System.out.println("There is no cycle for a");
+		}
+		
+		Node c = new Node(1);
+		for(int i = 2; i <= 100; i++) {
+			c.appendToTail(i);
+		}
+		
+		if(cycle(c) != null) {
+			System.out.println("C's data: " + cycle(c).data);
+		} else {
+			System.out.println("There is no cycle for c");
+		}
+		
+		
+		
 
 	}
 
