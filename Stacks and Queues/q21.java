@@ -47,43 +47,44 @@ public class q21 {
 	}
 	
 	static class Stack{
-		Node top;
-		private class Node{
-			int data = 0; 
-			Node next = null;
+		private static class StackNode{
+			private int data;
+			private StackNode next;
 			
-			public Node(int d) {
-				this.data = d;
+			public StackNode(int data) {
+				this.data = data;
 			}
+			
+			
 		}
 		
-		Node stack;
-		public int peek() {
+		public StackNode top;
+		
+		public int pop() {
+			int item = top.data;
+			top = top.next;
+			return item;
+		}
+		
+		public int peek(){
 			return top.data;
 		}
-		public void push(int item) {
-			Node node = new Node(item);
-			if(top == null) {
-				top = node;
-				stack = top;
-				return;
-			}
-			stack.next = top;
-			top = node;
-		}
-		public int pop()  {
-			int data = top.data;
-			top = top.next;
-			return data;
-		}
+		
 		public boolean isEmpty() {
-			return(top == null);
+			return top == null;
 		}
+		
+		public void push(int item) {
+			StackNode t = new StackNode(item);
+			t.next = top;
+			top = t;
+		}
+		
 	}
 
 	public static void main(String[] args)  {
 		MyQueue queue = new MyQueue();
-		for(int i = 1; i <= 10; i++) {
+		for(int i = 1; i <= 4; i++) {
 			queue.enqueue(i);
 		}
 		
@@ -91,6 +92,7 @@ public class q21 {
 			queue.dequeue();
 		}
 		
+		System.out.println(queue.peek());
 		
 
 	}
